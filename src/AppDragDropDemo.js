@@ -26,6 +26,14 @@ class AppDragDropDemo extends Component {
 		event.preventDefault();
 	};
 
+	onDragEnter = (event, column) => {
+		this.refs[column].classList.add('over');
+	};
+
+	onDragLeave = (event, column) => {
+		this.refs[column].classList.remove('over');
+	};
+
 	onDragStart = (event, id) => {
 		console.log('dragstart:', id);
 		event.dataTransfer.setData('id', id);
@@ -44,6 +52,7 @@ class AppDragDropDemo extends Component {
 			...this.state,
 			tasks,
 		});
+		this.refs[status].classList.remove('over');
 	};
 
 	render() {
@@ -67,14 +76,24 @@ class AppDragDropDemo extends Component {
 		return (
 			<div className="container-drag">
 				<h2 className="header">DRAG & DROP DEMO</h2>
-				<div className="wip" onDragOver={e => this.onDragOver(e)} onDrop={e => this.onDrop(e, 'wip')}>
+				<div
+					className="wip"
+					onDragOver={e => this.onDragOver(e)}
+					onDrop={e => this.onDrop(e, 'wip')}
+					ref="wip"
+					onDragEnter={e => this.onDragEnter(e, 'wip')}
+					onDragLeave={e => this.onDragLeave(e, 'wip')}
+				>
 					<span className="task-header">WIP</span>
 					{tasks.wip}
 				</div>
 				<div
 					className="droppable"
 					onDragOver={e => this.onDragOver(e)}
+					onDragEnter={e => this.onDragEnter(e, 'complete')}
+					onDragLeave={e => this.onDragLeave(e, 'complete')}
 					onDrop={e => this.onDrop(e, 'complete')}
+					ref="complete"
 				>
 					<span className="task-header">Complete</span>
 					{tasks.complete}

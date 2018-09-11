@@ -18,6 +18,10 @@
 	border-right: 1px dotted #cecece;
 }
 
+.wip.over {
+	background-color: #999;
+}
+
 .header {
 	display: inline-block;
 	margin: 0;
@@ -42,11 +46,17 @@
 	border-left: 1px dotted;
 }
 
+.droppable.over {
+	background-color: #454545;
+}
+
 .draggable {
 	cursor: pointer;
 	width: 100px;
 	height: 100px;
 	background-color: yellow;
 	margin: 5px auto;
-	line-height: 5em;
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
